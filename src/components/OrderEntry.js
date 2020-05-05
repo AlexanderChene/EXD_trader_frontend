@@ -20,6 +20,7 @@ class OrderEntry extends React.Component {
 
         }
         this.handleOnchange = this.handleOnchange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
     }
 
     handleOnchange(e){
@@ -28,6 +29,11 @@ class OrderEntry extends React.Component {
         this.setState({
             order: newOrder
         })
+    }
+
+    onSubmit(e){
+        e.preventDefault();
+        console.log(this.state.order);
     }
     render() {
         return (<Card>
@@ -86,7 +92,7 @@ class OrderEntry extends React.Component {
                         </Form.Group>
                     </Form.Row>
 
-                    <Button variant="primary" type="submit">Submit</Button>
+                    <Button variant="primary" type="submit" onSubmit = {this.onSubmit}>Submit</Button>
                 </Form>
             </Card.Body>
         </Card>)
