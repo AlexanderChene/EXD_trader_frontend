@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { Card, Form, Button, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -32,8 +33,9 @@ class OrderEntry extends React.Component {
     }
 
     onSubmit(e){
-        e.preventDefault();
         console.log(this.state.order);
+        axios.post('http://localhost:5000/orders/add/', {order: this.state.order})
+            .then(res => console.log(res.data));
     }
     render() {
         return (<Card>
@@ -80,19 +82,19 @@ class OrderEntry extends React.Component {
                                 <option value="Limit">FOK</option>
                             </Form.Control>
                         </Form.Group>
-                        <Form.Group as={Col} controlId="stopPrice">
+                        <Form.Group as={Col}>
                             <Form.Label>Stop Price:</Form.Label>
                             <Form.Control type="Number" value={this.state.order.stopPrice} onChange={this.handleOnchange} id={"stopPrice"}/>
                         </Form.Group>
                     </Form.Row>
                     <Form.Row>
-                        <Form.Group controlId="comment">
+                        <Form.Group>
                             <Form.Label>Example textarea</Form.Label>
                             <Form.Control as="textarea" rows="3" value={this.state.order.comment} onChange={this.handleOnchange} id={"comment"}/>
                         </Form.Group>
                     </Form.Row>
 
-                    <Button variant="primary" type="submit" onSubmit = {this.onSubmit}>Submit</Button>
+                    <Button variant="primary"  onClick = {this.onSubmit}>Submit</Button>
                 </Form>
             </Card.Body>
         </Card>)
