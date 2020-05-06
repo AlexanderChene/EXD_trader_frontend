@@ -1,11 +1,20 @@
 import React from 'react';
-import { Card, Table } from 'react-bootstrap';
+import { Card, Table,  Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class OrderBlotter extends React.Component {
+    constructor(props){
+        super(props);
+
+        this.deleteOrder = this.deleteOrder.bind(this);
+    }
+
+    deleteOrder(id){
+        console.log(id);
+    }
     render() {
         let tableContent = this.props.orders.map((elem, index) => {
-            return <tr key={elem._id}><td>{elem.action}</td><td>{elem.symbol}</td><td>{elem.qty}</td><td>{elem.orderType}</td><td>{elem.tif}</td><td>{elem.price}</td><td>{elem.stopPrice}</td><td>{elem.comment}</td></tr>
+            return <tr key={elem._id}><td>{elem.action}</td><td>{elem.symbol}</td><td>{elem.qty}</td><td>{elem.orderType}</td><td>{elem.tif}</td><td>{elem.price}</td><td>{elem.stopPrice}</td><td>{elem.comment}</td><td><Button variant="danger"  onClick = {()=>this.deleteOrder(elem._id)}>Delete</Button></td></tr>
         })
         return (
             <Card>
@@ -22,6 +31,7 @@ class OrderBlotter extends React.Component {
                                 <th>Price</th>
                                 <th>Stop Price</th>
                                 <th>Comment</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>{tableContent}</tbody>
