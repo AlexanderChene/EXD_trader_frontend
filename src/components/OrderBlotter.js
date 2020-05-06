@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { Card, Table,  Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -10,7 +11,10 @@ class OrderBlotter extends React.Component {
     }
 
     deleteOrder(id){
-        console.log(id);
+        axios.delete(`http://localhost:5000/orders/${id}`).then(res=>{
+            console.log(res);
+            this.props.refreshOrdersData();
+        })
     }
     render() {
         let tableContent = this.props.orders.map((elem, index) => {

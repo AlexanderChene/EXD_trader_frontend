@@ -30,7 +30,7 @@ class App extends React.Component{
     return (
       <div className="container">
         <OrderEntry refreshOrdersData={this.refreshOrdersData}/>
-        <OlderBlotter orders={this.state.orders}/>
+        <OlderBlotter orders={this.state.orders} refreshOrdersData={this.refreshOrdersData}/>
       </div>
     );
   }
