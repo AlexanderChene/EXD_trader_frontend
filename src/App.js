@@ -1,16 +1,19 @@
 import React from 'react';
 import axios from 'axios';
 import OrderEntry from './components/OrderEntry'
-import OlderBlotter from './components/OrderBlotter'
+import OrderBlotter from './components/OrderBlotter'
+import OrderEditModal from './components/OrderEditModal'
 import './App.css'
 
 class App extends React.Component{
   constructor(props){
     super(props);
     this.state={
-      orders: []
+      orders: [],
+      modalOpen: false
     }
     this.refreshOrdersData = this.refreshOrdersData.bind(this);
+    this.openModal = this.openModal.bind(this);
   }
 
   refreshOrdersData(){
@@ -23,6 +26,13 @@ class App extends React.Component{
     })
   }
 
+  openModal(){
+    let isOpen = this.state.modalOpen;
+    this.setState({
+      modalOpen: !isOpen
+    })
+  }
+
   componentDidMount(){
     this.refreshOrdersData();
   }
@@ -30,7 +40,8 @@ class App extends React.Component{
     return (
       <div className="container">
         <OrderEntry refreshOrdersData={this.refreshOrdersData}/>
-        <OlderBlotter orders={this.state.orders} refreshOrdersData={this.refreshOrdersData}/>
+        <OrderBlotter orders={this.state.orders} refreshOrdersData={this.refreshOrdersData} openModal={this.openModal}/>
+        <OrderEditModal isOpen={this.state.modalOpen} openModal={this.openModal}/>
       </div>
     );
   }
