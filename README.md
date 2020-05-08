@@ -2,19 +2,19 @@
  Create, Read, Update and Delete the EXD Trader records
   
   
-  Technologies:
-  Front-end------>React JS
-  Back-end-------->Express JS
-  Database-------> MongoDB
+  Technologies:<br/>
+  Front-end------>React JS<br/>
+  Back-end-------->Express JS<br/>
+  Database-------> MongoDB<br/>
   
-  Repositories:
-  Front-end repository: https://github.com/AlexanderChene/EXD_trader_frontend
-  Back-end repository: https://github.com/AlexanderChene/EXD_trader_backend
+  Repositories:<br/>
+  Front-end repository: https://github.com/AlexanderChene/EXD_trader_frontend<br/>
+  Back-end repository: https://github.com/AlexanderChene/EXD_trader_backend<br/>
   Database: You need to set up mongoDB on your local machine
   
 # # Set up
-  Download Fron-end repository, run 'npm install' and 'npm start' inside the directory
-  Download Back-end repository, run 'nodemon server.js' inside the directory
+  Download Fron-end repository, run 'npm install' and 'npm start' inside the directory.<br/>
+  Download Back-end repository, run 'nodemon server.js' inside the directory.
   
 # # Demo
 ![image](https://user-images.githubusercontent.com/30871262/81456222-8c4d0580-915f-11ea-98b6-8c8acb74e7f7.png)
