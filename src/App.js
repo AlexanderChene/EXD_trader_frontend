@@ -55,7 +55,8 @@ class App extends React.Component{
      .then(res=>{
         this.setState({
           modalOpen: false
-        }, ()=> {this.refreshOrdersData(); alert(`Order ${this.state.updatingOrder._id} has been updated successfully!!`)})
+        }, ()=> {this.refreshOrdersData(); 
+          alert(`Order ${this.state.updatingOrder._id} has been updated successfully!!`)})
      })
     
   }
