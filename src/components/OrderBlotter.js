@@ -13,7 +13,6 @@ class OrderBlotter extends React.Component {
 
     deleteOrder(id){
         axios.delete(`http://localhost:5000/orders/${id}`).then(res=>{
-            console.log(res);
             this.props.refreshOrdersData();
         })
     }

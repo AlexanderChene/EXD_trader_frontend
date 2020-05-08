@@ -17,12 +17,12 @@ class App extends React.Component{
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.onChangeAtUpdatingForm = this.onChangeAtUpdatingForm.bind(this);
+    this.submitUpdatingForm = this.submitUpdatingForm.bind(this);
   }
 
   refreshOrdersData(){
     axios.get('http://localhost:5000/orders')
     .then(res => {
-      console.log(res.data);
       this.setState({
         orders: [...res.data]
       })
@@ -45,10 +45,19 @@ class App extends React.Component{
   onChangeAtUpdatingForm(e){
     let Item = {...this.state.updatingOrder}
     Item[e.target.id] = e.target.value;
-    console.log(Item);
     this.setState({
       updatingOrder: Item
     })
+  }
+
+  submitUpdatingForm(){
+    axios.post(`http://localhost:5000/orders/update/${this.state.updatingOrder._id}`, {order: this.state.updatingOrder})
+     .then(res=>{
+        this.setState({
+          modalOpen: false
+        }, ()=> {this.refreshOrdersData(); alert(`Order ${this.state.updatingOrder._id} has been updated successfully!!`)})
+     })
+    
   }
   componentDidMount(){
     this.refreshOrdersData();
@@ -58,7 +67,9 @@ class App extends React.Component{
       <div className="container">
         <OrderEntry refreshOrdersData={this.refreshOrdersData}/>
         <OrderBlotter orders={this.state.orders} refreshOrdersData={this.refreshOrdersData} openModal={this.openModal}/>
-        {this.state.modalOpen&&<OrderEditModal isOpen={this.state.modalOpen} openModal={this.openModal} closeModal={this.closeModal} updatingOrder={this.state.updatingOrder} onChangeAtUpdatingForm={this.onChangeAtUpdatingForm}/>}
+        {this.state.modalOpen&&<OrderEditModal isOpen={this.state.modalOpen} openModal={this.openModal} closeModal={this.closeModal} updatingOrder={this.state.updatingOrder} onChangeAtUpdatingForm={this.onChangeAtUpdatingForm}
+          submitUpdatingForm = {this.submitUpdatingForm}
+        />}
       </div>
     );
   }

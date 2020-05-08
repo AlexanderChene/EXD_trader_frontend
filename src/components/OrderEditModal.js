@@ -25,11 +25,11 @@ function OrderEditModal(props){
                         </Form.Group>
                         <Form.Group as={Col}>
                             <Form.Label>Qty:</Form.Label>
-                            <Form.Control type="Number" value={props.updatingOrder.qty} onChange={(e)=>props.onChangeAtUpdatingForm(e)} id={"qty"}/>
+                            <Form.Control type="Number" value={props.updatingOrder.qty?(props.updatingOrder.qty):(0)} onChange={(e)=>props.onChangeAtUpdatingForm(e)} id={"qty"}/>
                         </Form.Group>
                         <Form.Group as={Col}>
                             <Form.Label>Price:</Form.Label>
-                            <Form.Control type="Number" value={props.updatingOrder.price} onChange={(e)=>props.onChangeAtUpdatingForm(e)} id={"price"}/>
+                            <Form.Control type="Number" value={props.updatingOrder.price?(props.updatingOrder.price):(0)} onChange={(e)=>props.onChangeAtUpdatingForm(e)} id={"price"}/>
                         </Form.Group>
                     </Form.Row>
                     <Form.Row>
@@ -52,7 +52,7 @@ function OrderEditModal(props){
                         </Form.Group>
                         <Form.Group as={Col}>
                             <Form.Label>Stop Price:</Form.Label>
-                            <Form.Control type="Number" value={props.updatingOrder.stopPrice} onChange={(e)=>props.onChangeAtUpdatingForm(e)} id={"stopPrice"}/>
+                            <Form.Control type="Number" value={props.updatingOrder.stopPrice?(props.updatingOrder.stopPrice):(0)} onChange={(e)=>props.onChangeAtUpdatingForm(e)} id={"stopPrice"}/>
                         </Form.Group>
                     </Form.Row>
                     <Form.Row>
@@ -62,7 +62,7 @@ function OrderEditModal(props){
                         </Form.Group>
                     </Form.Row>
 
-                    {/*<Button variant="primary"  onClick = {this.onSubmit}>Submit</Button>*/}
+                    <Button variant="primary"  onClick = {props.submitUpdatingForm}>Submit</Button>
                 </Form>
                 </div>
                 <div>

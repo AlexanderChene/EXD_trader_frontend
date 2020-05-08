@@ -33,10 +33,8 @@ class OrderEntry extends React.Component {
     }
 
     onSubmit(){
-        console.log(this.state.order);
         axios.post('http://localhost:5000/orders/add/', {order: this.state.order})
             .then(res => {
-                console.log(res.data);
                 this.props.refreshOrdersData();
                 this.setState({
                     order: {
