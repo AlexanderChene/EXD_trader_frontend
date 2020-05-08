@@ -18,13 +18,12 @@ class OrderBlotter extends React.Component {
         })
     }
 
-    editOrder(id){
-        this.props.openModal();
-        console.log(id);
+    editOrder(elem){
+        this.props.openModal(elem);
     }
     render() {
         let tableContent = this.props.orders.map((elem, index) => {
-            return <tr key={elem._id}><td>{elem.action}</td><td>{elem.symbol}</td><td>{elem.qty}</td><td>{elem.orderType}</td><td>{elem.tif}</td><td>{elem.price}</td><td>{elem.stopPrice}</td><td>{elem.comment}</td><td><Button variant="danger"  onClick = {()=>this.deleteOrder(elem._id)}>Delete</Button></td><td><Button variant="primary"  onClick = {()=>this.editOrder(elem._id)}>Edit</Button></td></tr>
+            return <tr key={elem._id}><td>{elem.action}</td><td>{elem.symbol}</td><td>{elem.qty}</td><td>{elem.orderType}</td><td>{elem.tif}</td><td>{elem.price}</td><td>{elem.stopPrice}</td><td>{elem.comment}</td><td><Button variant="danger"  onClick = {()=>this.deleteOrder(elem._id)}>Delete</Button></td><td><Button variant="primary"  onClick = {()=>this.editOrder(elem)}>Edit</Button></td></tr>
         })
         return (
             <Card>

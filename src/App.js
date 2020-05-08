@@ -10,10 +10,13 @@ class App extends React.Component{
     super(props);
     this.state={
       orders: [],
-      modalOpen: false
+      modalOpen: false,
+      updatingOrder: {}
     }
     this.refreshOrdersData = this.refreshOrdersData.bind(this);
     this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.onChangeAtUpdatingForm = this.onChangeAtUpdatingForm.bind(this);
   }
 
   refreshOrdersData(){
@@ -26,13 +29,27 @@ class App extends React.Component{
     })
   }
 
-  openModal(){
-    let isOpen = this.state.modalOpen;
+  openModal(elem){
     this.setState({
-      modalOpen: !isOpen
+      updatingOrder: {...elem},
+      modalOpen: true
     })
   }
 
+  closeModal(){
+    this.setState({
+      modalOpen: false
+    })
+  }
+
+  onChangeAtUpdatingForm(e){
+    let Item = {...this.state.updatingOrder}
+    Item[e.target.id] = e.target.value;
+    console.log(Item);
+    this.setState({
+      updatingOrder: Item
+    })
+  }
   componentDidMount(){
     this.refreshOrdersData();
   }
@@ -41,7 +58,7 @@ class App extends React.Component{
       <div className="container">
         <OrderEntry refreshOrdersData={this.refreshOrdersData}/>
         <OrderBlotter orders={this.state.orders} refreshOrdersData={this.refreshOrdersData} openModal={this.openModal}/>
-        <OrderEditModal isOpen={this.state.modalOpen} openModal={this.openModal}/>
+        {this.state.modalOpen&&<OrderEditModal isOpen={this.state.modalOpen} openModal={this.openModal} closeModal={this.closeModal} updatingOrder={this.state.updatingOrder} onChangeAtUpdatingForm={this.onChangeAtUpdatingForm}/>}
       </div>
     );
   }
